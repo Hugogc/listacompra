@@ -1,14 +1,30 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      Agregar nombre de la lìsta
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content class="fondo">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="listaCompraService.agregarLista()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+<ion-list>
+  <ion-item *ngFor="let lista of listaCompraService.listas; let i = index" (click)="listaCompraService.irLista( i )"  detail>
+      <ion-button size="large" fill="clear" (click)="listaCompraService.borrarLista( i )">
+        <ion-icon slot="start" name="trash" color="danger"></ion-icon>
+      </ion-button>
+    <ion-label>{{lista.titulo}}</ion-label>
+  </ion-item>
+</ion-list>
+  
+
+
+
+
+
 </ion-content>

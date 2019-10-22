@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar no-border color="primary">
+      <ion-title>Añade los artículos</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nuevo artículo</ion-label>
+        <ion-input type="text" 
+                   [(ngModel)]="listaCompraService.nombreItem"
+                   (keyup.enter)="listaCompraService.anadirItem()"></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Artículos añadidos</ion-label>
+      </ion-list-header>
+
+        <ion-item *ngFor="let item of listaCompraService.getItems(); let i = index">
+          <ion-checkbox slot="end" [(ngModel)]="item.completado"></ion-checkbox>
+            <ion-label>{{item.desc}}</ion-label>
+               <ion-icon slot="start" name="trash" color="danger"fill="clear"(click)="listaCompraService.borrarItem( i )"></ion-icon>       
+        </ion-item>
+    </ion-list>
+    
+  
+</ion-content>
