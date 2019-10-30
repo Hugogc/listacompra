@@ -4,8 +4,6 @@ import { ListacompraService } from '../../services/listacompra.service';
 
 
 
-
-
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.page.html',

@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="medium">
     <ion-title>
       Agregar nombre de la lìsta
     </ion-title>
@@ -7,20 +7,22 @@
 </ion-header>
 
 <ion-content class="fondo">
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="listaCompraService.agregarLista()">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
-
-<ion-list>
-  <ion-item *ngFor="let lista of listaCompraService.listas; let i = index" (click)="listaCompraService.irLista( i )"  detail>
-      <ion-button size="large" fill="clear" (click)="listaCompraService.borrarLista( i )">
+    <div class="agregar">
+      <ion-img class="crear" src="assets/img/cart.png" (click)="listaCompraService.agregarLista()"></ion-img>
+    </div>
+<ion-list class="bg-transparent">
+  <ion-item color="none" *ngFor="let lista of listaCompraService.listas; let i = index" 
+            (click)="listaCompraService.irLista( i )" detail>
+      <ion-button size="large" fill="clear" (click)="listaCompraService.borrarLista ( i )">
         <ion-icon slot="start" name="trash" color="danger"></ion-icon>
       </ion-button>
     <ion-label>{{lista.titulo}}</ion-label>
+    <ion-note slot="end">{{ lista.items.length }} Artículos</ion-note>
   </ion-item>
 </ion-list>
+
+
+
   
 
 

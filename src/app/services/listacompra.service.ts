@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +14,15 @@ export class ListacompraService {
   listas: Lista[] = [];
   listaActiva = 0;
   nombreItem = '';
+  cargarImg = true;
 
   constructor(public router: Router,
               private alertCtrl: AlertController,
-              public storage: Storage) {
+              public storage: Storage,
+               ) {
     this.cargarStorage();
   }
+
   async agregarLista() {
     const alert = await this.alertCtrl.create({
       header: 'Nueva lista',
@@ -37,7 +42,6 @@ export class ListacompraService {
         {
           text: 'Crear',
           handler: ( data ) => {
-            console.log(data);
             if (data.titulo.length === 0 ) {
               return;
             }
@@ -50,6 +54,10 @@ export class ListacompraService {
 
     alert.present();
   }
+
+  cambioCheck( item: ListaItem ) {
+    this.guardarStorage();
+  }
   anadirItem() {
     if ( this.nombreItem.length === 0) {
       return;
@@ -60,10 +68,10 @@ export class ListacompraService {
     this.guardarStorage();
   }
   getItems() {
-    return this.listas [this.listaActiva].items;
+    return this.listas[this.listaActiva].items;
   }
   irLista(i: number ) {
-    this.listaActiva = i;//this.listaActiva = this.listas[ i ]
+    this.listaActiva = i;
     this.router.navigateByUrl( '/agregar' );
   }
   borrarLista( i: number ) {
@@ -78,7 +86,7 @@ export class ListacompraService {
     const nuevaLista = new Lista(titulo);
     this.listas.push(nuevaLista);
     this.guardarStorage();
-   }
+  }
    guardarStorage() {
     this.storage.set('data', this.listas );
   }
