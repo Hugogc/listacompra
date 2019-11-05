@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar color="medium">
     <ion-title>
-      Agregar nombre de la lìsta
+      Agregar nombre de la lista
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +13,7 @@
 <ion-list class="bg-transparent">
   <ion-item color="none" *ngFor="let lista of listaCompraService.listas; let i = index" 
             (click)="listaCompraService.irLista( i )" detail>
-      <ion-button size="large" fill="clear" (click)="listaCompraService.borrarLista ( i )">
+      <ion-button size="large" fill="clear" (click)="listaCompraService.presentAlertConfirm ( i )">
         <ion-icon slot="start" name="trash" color="danger"></ion-icon>
       </ion-button>
     <ion-label>{{lista.titulo}}</ion-label>

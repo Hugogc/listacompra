@@ -2,15 +2,16 @@
     <ion-toolbar no-border color="medium">
       <ion-title>Añade los artículos</ion-title>
       <ion-buttons slot="start">
-        <ion-back-button (click)="listaCompraService.guardarStorage()" defaultHref="home"></ion-back-button>
+        <ion-back-button defaultHref="home"></ion-back-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
 <ion-content>
-    <ion-list>
-      <ion-item>
+    <ion-list >
+      <ion-item class="anadir">
         <ion-label position="floating">Añadir un nuevo artículo</ion-label>
+          
         <ion-input type="text" 
                    [(ngModel)]="listaCompraService.nombreItem"
                    (keyup.enter)="listaCompraService.anadirItem()"></ion-input>

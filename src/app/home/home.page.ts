@@ -13,6 +13,7 @@ export class HomePage {
 
   constructor( public router: Router,
                public listaCompraService: ListacompraService, ) {
+                 this.listaCompraService.cargarStorage();
 
   }
 }

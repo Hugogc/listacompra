@@ -14,13 +14,12 @@ export class ListacompraService {
   listas: Lista[] = [];
   listaActiva = 0;
   nombreItem = '';
-  cargarImg = true;
 
   constructor(public router: Router,
-              private alertCtrl: AlertController,
+              public alertCtrl: AlertController,
               public storage: Storage,
                ) {
-    this.cargarStorage();
+
   }
 
   async agregarLista() {
@@ -74,6 +73,25 @@ export class ListacompraService {
     this.listaActiva = i;
     this.router.navigateByUrl( '/agregar' );
   }
+  async presentAlertConfirm( i: number ) {
+    const alert = await this.alertCtrl.create({
+      header: '¿Desea borrar la lista?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+
+        }, {
+          text: 'Si',
+          handler: () => {
+            this.borrarLista( i );
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
   borrarLista( i: number ) {
     this.listas.splice( i, 1 );
     this.guardarStorage();
@@ -91,8 +109,8 @@ export class ListacompraService {
     this.storage.set('data', this.listas );
   }
   cargarStorage() {
-     this.storage.get('data').then((val) => {
-     this.listas = val;
+      this.storage.get('data').then((val) => {
+      this.listas = val;
     });
   }
 }
